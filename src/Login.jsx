@@ -1,13 +1,30 @@
 import React, { useState } from "react";
+import axios from "axios"
+
 
 export const Login = (props) => {
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post("/api/login", { email, password });
+            // Handle the response, e.g., set user state or handle errors
+            console.log(response.data);
+        } catch (error) {
+            console.error("Login error:", error);
+        }
+    }
+
+/*export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email);
-    }
+    }*/
 
     return (
         <div className="auth-form-container">

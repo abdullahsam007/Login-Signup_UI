@@ -1,6 +1,23 @@
 import React, { useState } from "react";
+import axios from "axios"
 
 export const Register = (props) => {
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
+    const [name, setName] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post("/api/register", { name, email, password });
+            // Handle the response, e.g., set user state or handle errors
+            console.log(response.data);
+        } catch (error) {
+            console.error("Registration error:", error);
+        }
+    }
+
+/*export const Register = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [name, setName] = useState('');
@@ -8,7 +25,7 @@ export const Register = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email);
-    }
+    }*/
 
     return (
         <div className="auth-form-container">
